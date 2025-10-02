@@ -1,0 +1,15 @@
+{
+  "$id": "https://ashesofverdun.app/schemas/consumable.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "uses", "effect"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "name": { "type": "string", "minLength": 1 },
+    "uses": { "type": "integer", "minimum": 1 },
+    "effect": { "type": "string", "minLength": 1 },
+    "limitPerRound": { "type": ["integer", "null"], "minimum": 1 },
+    "afterEffect": { "type": ["string", "null"] }
+  }
+}

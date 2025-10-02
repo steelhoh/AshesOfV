@@ -1,0 +1,37 @@
+{
+  "$id": "https://ashesofverdun.app/schemas/equipment.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "slot", "name", "effects", "drawbacks", "rarity"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "slot": {
+      "type": "string",
+      "enum": [
+        "weapon1H",
+        "offhand",
+        "weapon2H",
+        "armorBody",
+        "armorOther",
+        "talismanRelic"
+      ]
+    },
+    "name": { "type": "string", "minLength": 1 },
+    "effects": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "drawbacks": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "charges": { "type": ["integer", "null"], "minimum": 0 },
+    "rarity": {
+      "type": "string",
+      "enum": ["mundane", "scarce", "rare", "epic", "mythic"]
+    },
+    "notes": { "type": ["string", "null"] }
+  }
+}
