@@ -58,7 +58,7 @@ export function JsonPane() {
         value={jsonDraft}
         onChange={(event) => dispatch({ type: "setJsonDraft", payload: { value: event.target.value } })}
         className="h-72 w-full rounded-lg border border-slate-800 bg-slate-950 px-4 py-3 font-mono text-xs text-amber-100 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-500/30"
-        placeholder="{\n  \"id\": \"...\",\n  \"name\": \"...\"\n}"
+        placeholder={`{\n  "id": "...",\n  "name": "..."\n}`}
         spellCheck={false}
       />
     </section>
