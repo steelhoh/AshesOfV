@@ -11,7 +11,7 @@ export function JsonPane({ schemaId, initial, onValid }:{ schemaId: string; init
       const v = ajv.getSchema(schemaId);
       if(!v) throw new Error(`Schema not found: ${schemaId}`);
       const ok = v(val);
-      if(!ok){ setErrors(toFriendlyErrors(v.errors).map(e=>`${e.path}: ${e.message}`)); return; }
+      if(!ok){ setErrors(toFriendlyErrors(v.errors as Parameters<typeof toFriendlyErrors>[0]).map(e=>`${e.path}: ${e.message}`)); return; }
       setErrors([]); onValid(val);
     }catch(e:any){ setErrors([e.message]); }
   },[text,schemaId,onValid]);
