@@ -23,7 +23,7 @@ export function MonsterFormView({ onValid }:{ onValid:(val: MonsterForm)=>void }
     const v = ajv.getSchema("MonsterStatCard");
     if(!v) return;
     const ok = v(data as any);
-    if(!ok) setErrors(toFriendlyErrors(v.errors).map(e=>`${e.path}: ${e.message}`));
+    if(!ok) setErrors(toFriendlyErrors(v.errors as Parameters<typeof toFriendlyErrors>[0]).map(e=>`${e.path}: ${e.message}`));
     else { setErrors([]); onValid(data); }
   };
 
