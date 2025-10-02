@@ -8,7 +8,9 @@ addFormats(ajv);
 AllSchemas.forEach(s => ajv.addSchema(s));
 
 export type ValidationError = { path: string; message: string };
-export function toFriendlyErrors(errors: ErrorObject[] | null | undefined): ValidationError[] {
+type AjvError = ErrorObject<string, Record<string, unknown>, unknown>;
+
+export function toFriendlyErrors(errors: readonly AjvError[] | null | undefined): ValidationError[] {
   if (!errors) return [];
   return errors.map(e => ({ path: e.instancePath || "/", message: e.message || "Invalid" }));
 }
