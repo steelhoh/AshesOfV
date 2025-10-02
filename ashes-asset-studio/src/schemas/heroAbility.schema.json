@@ -1,0 +1,60 @@
+{
+  "$id": "https://ashesofverdun.app/schemas/heroAbility.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "class",
+    "abilityName",
+    "level",
+    "range",
+    "timing",
+    "type",
+    "skillActions",
+    "successOutcomes"
+  ],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "class": { "type": "string", "minLength": 1 },
+    "abilityName": { "type": "string", "minLength": 1 },
+    "level": { "type": "integer", "minimum": 1, "maximum": 3 },
+    "range": { "type": "string", "minLength": 1 },
+    "timing": {
+      "type": "string",
+      "enum": ["turnStart", "turnEnd", "reaction", "interrupt", "bonus"]
+    },
+    "type": {
+      "type": "string",
+      "enum": ["melee", "ranged", "aoe", "support", "utility"]
+    },
+    "skillActions": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "successOutcomes": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "critical": { "type": ["string", "null"] },
+    "bonusOutcome": { "type": ["string", "null"] },
+    "gigaFail": { "type": ["string", "null"] },
+    "costs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "hp",
+          "burden",
+          "status",
+          "selfStagger",
+          "consumeAsh",
+          "loseInitiative"
+        ]
+      },
+      "minItems": 0
+    }
+  }
+}

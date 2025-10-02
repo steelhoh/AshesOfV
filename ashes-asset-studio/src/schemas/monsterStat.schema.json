@@ -1,0 +1,77 @@
+{
+  "$id": "https://ashesofverdun.app/schemas/monsterStat.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "rarityTag",
+    "category",
+    "type",
+    "hp",
+    "dmg",
+    "spd",
+    "traits",
+    "xp",
+    "gold",
+    "threatValue",
+    "lootValue"
+  ],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "name": { "type": "string", "minLength": 1 },
+    "rarityTag": {
+      "type": "string",
+      "enum": ["common", "elite", "boss", "legendary"]
+    },
+    "category": {
+      "type": "string",
+      "enum": ["undead", "aberration", "wretched", "eldritch", "feral", "construct"]
+    },
+    "type": { "type": "string", "enum": ["minion", "elite", "boss"] },
+    "hp": { "type": "integer", "minimum": 1 },
+    "dmg": { "type": "integer", "minimum": 0 },
+    "spd": { "type": "integer", "minimum": 0 },
+    "traits": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 0,
+      "maxItems": 6
+    },
+    "xp": { "type": "integer", "minimum": 0 },
+    "gold": { "type": "integer", "minimum": 0 },
+    "threatValue": { "type": "integer", "minimum": 0 },
+    "lootValue": { "type": "integer", "minimum": 0 },
+    "portraitUrl": { "type": ["string", "null"], "format": "uri" },
+    "scaling": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "normal": { "$ref": "#/$defs/scalingBlock" },
+        "elite": { "$ref": "#/$defs/scalingBlock" }
+      }
+    }
+  },
+  "$defs": {
+    "scalingRow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hp", "dmg", "spd"],
+      "properties": {
+        "hp": { "type": "integer", "minimum": 0 },
+        "dmg": { "type": "integer", "minimum": 0 },
+        "spd": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "scalingBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lv1": { "$ref": "#/$defs/scalingRow" },
+        "lv2": { "$ref": "#/$defs/scalingRow" },
+        "lv3": { "$ref": "#/$defs/scalingRow" }
+      }
+    }
+  }
+}

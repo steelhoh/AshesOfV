@@ -1,0 +1,15 @@
+{
+  "$id": "https://ashesofverdun.app/schemas/burden.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "kind", "name", "effect"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "kind": { "type": "string", "enum": ["affliction", "virtue"] },
+    "name": { "type": "string", "minLength": 1 },
+    "effect": { "type": "string", "minLength": 1 },
+    "partyRipple": { "type": ["string", "null"] },
+    "roleplayLine": { "type": ["string", "null"] }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$id": "https://ashesofverdun.app/schemas/monsterAbility.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "monsterName",
+    "attackName",
+    "initiative",
+    "actions",
+    "targets"
+  ],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "monsterName": { "type": "string", "minLength": 1 },
+    "attackName": { "type": "string", "minLength": 1 },
+    "initiative": { "type": "integer", "minimum": 0, "maximum": 10 },
+    "actions": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "targets": {
+      "type": "string",
+      "enum": [
+        "nearest",
+        "highestBurden",
+        "lowestHP",
+        "furthest",
+        "random",
+        "focusFire"
+      ]
+    },
+    "ashSurge": { "type": ["string", "null"] },
+    "flavor": { "type": ["string", "null"] }
+  }
+}
